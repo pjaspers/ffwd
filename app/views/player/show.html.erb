@@ -1,9 +1,14 @@
 O HAI THERE
 
 <ul>
+  <% duration = @song.delete(:duration) %>
+  <% position = @song.delete(:position) %>
   <% @song.each do |key, value| %>
-    <li><%= key %> => <%= value %></li>
+      <li><%= key %> => <%= value %></li>
   <% end %>
+  <li>Progress => <%= nice_time(position) %>/<%= nice_time(duration) %></li>
+
+
 </ul>
 
 

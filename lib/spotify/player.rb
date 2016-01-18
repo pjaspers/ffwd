@@ -100,7 +100,8 @@ module Ffwd
           :name => tell_spotify("get name of current track"),
           :artist => tell_spotify("get artist of current track"),
           :album => tell_spotify("get album of current track"),
-          :duration => tell_spotify("get duration of current_track")
+          :duration => tell_spotify("get duration of current track").to_f/1000,
+          :position => tell_spotify("get player position").to_f
         }
       end
     end
