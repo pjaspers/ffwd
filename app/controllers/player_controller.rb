@@ -1,7 +1,11 @@
+require "net/http"
+
 class PlayerController < ApplicationController
 
   def show
     @song = player.now_playing
+    id = (@song[:id] || "").split(":").last
+    @preview = fetchez_la_preview(id)
   end
 
   def now_playing
@@ -32,5 +36,13 @@ class PlayerController < ApplicationController
 
   def player
     Ffwd::Spotify::Player
+  end
+
+  # High chance of breaking
+  def fetchez_la_preview(id)
+    uri = URI.parse("https://api.spotify.com/v1/tracks/#{id}")
+    JSON.parse(Net::HTTP.get(uri))["album"]["images"].first["url"]
+  rescue
+    nil
   end
 end

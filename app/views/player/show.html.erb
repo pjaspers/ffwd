@@ -1,9 +1,39 @@
 O HAI THERE
 
-<%= @song %>
+<ul>
+  <% @song.each do |key, value| %>
+    <li><%= key %> => <%= value %></li>
+  <% end %>
+</ul>
 
 
 <%= button_to "Play", play_path, remote: true, method: :put %>
 <%= button_to "Pause", pause_path, remote: true, method: :put %>
 <%= button_to "Next", next_path, remote: true, method: :put %>
 <%= button_to "Previous", previous_path, remote: true, method: :put %>
+
+<% if @preview.present? %>
+  <img src="<%= @preview %>" />
+<% end %>
+
+<script>
+ var id = '<%= (@song[:id] || "").split(":").last %>';
+ var request = new XMLHttpRequest();
+ request.open('GET', '/my/url', true);
+
+ request.onload = function() {
+     if (request.status >= 200 && request.status < 400) {
+         // Success!
+         var data = JSON.parse(request.responseText);
+     } else {
+         // We reached our target server, but it returned an error
+
+     }
+ };
+
+ request.onerror = function() {
+     // There was a connection error of some sort
+ };
+
+ request.send();
+</script>
