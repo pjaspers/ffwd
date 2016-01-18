@@ -5,7 +5,9 @@ class PlayerController < ApplicationController
   def show
     @song = player.now_playing
     id = (@song[:id] || "").split(":").last
-    @preview = fetchez_la_preview(id)
+    @preview = Rails.cache.fetch(id) do
+      fetchez_la_preview(id)
+    end
   end
 
   def now_playing
