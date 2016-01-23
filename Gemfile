@@ -33,9 +33,9 @@ gem "devise", git: "git@github.com:plataformatec/devise.git"
 # [omniauth](http://github.com/intridea/omniauth)
 gem "omniauth"
 
-# OmniAuth strategy for Last.fm
-# [omniauth-lastfm](http://github.com/masterkain/omniauth-lastfm)
-gem "omniauth-lastfm"
+# A simple HTTP and REST client for Ruby, inspired by the Sinatra micro...
+# [rest-client](https://github.com/rest-client/rest-client)
+gem "rest-client", "~> 1.8.0"
 
 # Use ActiveModel has_secure_password
 # gem "bcrypt", "~> 3.1.7"
