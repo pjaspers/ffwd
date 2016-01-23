@@ -1,9 +1,12 @@
 development:
   api_key: <%= ENV["last_fm_api_key"] %>
   api_secret: <%= ENV["last_fm_secret"] %>
+  callback_url: "http://localhost:5000/users/auth/lastfm/callback"
 test:
   api_key: <%= ENV["last_fm_api_key"] %>
   api_secret: <%= ENV["last_fm_secret"] %>
+  callback_url: "http://ffwd.test/users/auth/lastfm/callback"
 production:
   api_key: <%= ENV["last_fm_api_key"] %>
   api_secret: <%= ENV["last_fm_secret"] %>
+  callback_url: "http://ffwd/users/auth/lastfm/callback"
