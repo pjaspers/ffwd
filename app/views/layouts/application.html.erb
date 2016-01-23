@@ -10,6 +10,11 @@
   </head>
 
   <body>
+    <header>
+
+      <%= link_to "Sign in", user_omniauth_authorize_path("lastfm") %>
+
+    </header>
     <%= yield %>
   </body>
 </html>
