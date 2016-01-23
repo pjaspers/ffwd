@@ -11,9 +11,11 @@
 
   <body>
     <header>
-
-      <%= link_to "Sign in", user_omniauth_authorize_path("lastfm") %>
-
+      <% if current_user %>
+        <%= current_user.uid %>
+      <% else  %>
+        <%= link_to "Sign in", user_omniauth_authorize_path("lastfm") %>
+      <% end %>
     </header>
     <%= yield %>
   </body>
