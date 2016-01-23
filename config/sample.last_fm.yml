@@ -1,0 +1,12 @@
+development:
+  last_fm:
+    api_key: <%= ENV["last_fm_api_key"] %>
+    api_secret: <%= ENV["last_fm_secret"] %>
+test:
+  last_fm:
+    api_key: <%= ENV["last_fm_api_key"] %>
+    api_secret: <%= ENV["last_fm_secret"] %>
+production:
+  last_fm:
+    api_key: <%= ENV["last_fm_api_key"] %>
+    api_secret: <%= ENV["last_fm_secret"] %>

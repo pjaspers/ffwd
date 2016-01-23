@@ -10,3 +10,4 @@
 .byebug_history
 vendor/ruby
 /.bundle
+/config/last_fm.yml
