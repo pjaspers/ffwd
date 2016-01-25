@@ -1,44 +1,50 @@
-O HAI THERE
+<div class="now_playing">
+  <div class="now_playing--track-artwork">
+    <div class="elpee">
+      <div class="vinyl">
+        <div class="vinyl-details">
+          <div class="vinyl-details--upperhalf">
+            <p class="vinyl-details--record-company">Koala Records</p>
+            <p class="vinyl-details--artist">Clint Mansell</p>
+          </div>
+          <div class="vinyl-details--lowerhalf">
+            <p class="vinyl-details--small-print">
+              Welcome to Lunar Industries.
+              &copyright; 2015
+              Audio CD (July 20, 2009)
+              Number of Discs: 1
+              Format: Soundtrack, Import
+              Label: Black Records
+              Run Time: 97 minutes
+              ASIN: B002FG9NLY
+            </p>
+          </div>
+        </div>
+      </div>
 
-<ul>
-  <% duration = @song.delete(:duration) %>
-  <% position = @song.delete(:position) %>
-  <% @song.each do |key, value| %>
-      <li><%= key %> => <%= value %></li>
-  <% end %>
-  <li>Progress => <%= nice_time(position) %>/<%= nice_time(duration) %></li>
+      <div class="sleeve">
+        <div class="sleeve--artwork">
+          <img class="sleeve--artwork--img" src="<%= @preview %>" />
+          <div class="sleeve--artwork--effects"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <div class="now_playing--track-info">
+    <ul>
+      <li class="now_playing--track-info_name"><span><%= @song[:name] %></span></li>
+      <li class="now_playing--track-info_artist"><span><%= @song[:artist] %></span></li>
+      <li class="now_playing--track-info_album"><span><%= @song[:album] %></span></li>
+      <li class="now_playing--track-info_progress"><span><%= nice_time(@song[:position]) %>/<%= nice_time(@song[:duration]) %></span></li>
+      <li class="now_playing--track-info_id"><span><%= link_to @song[:id], @song[:id] %></span></li>
+    </ul>
+  </div>
+</div>
 
-</ul>
-
-
-<%= button_to "Play", play_path, remote: true, method: :put %>
-<%= button_to "Pause", pause_path, remote: true, method: :put %>
-<%= button_to "Next", next_path, remote: true, method: :put %>
-<%= button_to "Previous", previous_path, remote: true, method: :put %>
-
-<% if @preview.present? %>
-  <img src="<%= @preview %>" />
-<% end %>
-
-<script>
- var id = '<%= (@song[:id] || "").split(":").last %>';
- var request = new XMLHttpRequest();
- request.open('GET', '/my/url', true);
-
- request.onload = function() {
-     if (request.status >= 200 && request.status < 400) {
-         // Success!
-         var data = JSON.parse(request.responseText);
-     } else {
-         // We reached our target server, but it returned an error
-
-     }
- };
-
- request.onerror = function() {
-     // There was a connection error of some sort
- };
-
- request.send();
-</script>
+<div>
+  <%= button_to "Play", play_path, remote: true, method: :put %>
+  <%= button_to "Pause", pause_path, remote: true, method: :put %>
+  <%= button_to "Next", next_path, remote: true, method: :put %>
+  <%= button_to "Previous", previous_path, remote: true, method: :put %>
+</div>
