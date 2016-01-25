@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  artist: MyString
+  album: MyString
+  last_played_at: 2016-01-25 10:05:13
+  duration: 1
+  artwork: MyString
+  external_id: MyString
+
+two:
+  name: MyString
+  artist: MyString
+  album: MyString
+  last_played_at: 2016-01-25 10:05:13
+  duration: 1
+  artwork: MyString
+  external_id: MyString
