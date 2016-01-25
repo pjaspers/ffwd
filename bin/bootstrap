@@ -1,0 +1,4 @@
+#! /bin/bash
+
+echo "==> Generating config files from config/*.example"
+for file in config/sample.*; { cp -n $file $(echo $file | sed 's/sample\.//'); }
