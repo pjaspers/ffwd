@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160123135910) do
+ActiveRecord::Schema.define(version: 20160125090513) do
+
+  create_table "songs", force: :cascade do |t|
+    t.string   "name"
+    t.string   "artist"
+    t.string   "album"
+    t.datetime "last_played_at"
+    t.integer  "duration"
+    t.string   "artwork"
+    t.string   "external_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "uid",                 default: "", null: false
