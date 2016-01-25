@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+require_relative '../config/environment'
+
+logger = Logger.new(STDOUT)
+logger.info "Starting monitor"
+s = Spotify::Monitor.new
+s.logger = logger
+
+s.on_started do |song_data|
+  puts "start: #{song_data[:name]} - #{song_data[:artist]} - #{song_data[:album]}"
+end
+
+s.on_playing do |song_data|
+  puts "playing: #{song_data[:name]} - #{song_data[:artist]} - #{song_data[:album]}"
+end
+
+s.on_ending do |song_data|
+  puts "ending: #{song_data[:name]} - #{song_data[:artist]} - #{song_data[:album]}"
+end
+
+s.start_listening!
