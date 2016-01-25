@@ -32,11 +32,12 @@ module Spotify
   end
 
   class Monitor
+    # Private: The name of feature instrumentation events.
+    InstrumentationName = "monitor_operation.spotify"
 
     attr_accessor :interval
     attr_accessor :running
     attr_accessor :state
-    attr_accessor :logger
 
     def initialize(*)
       @interval = 1
@@ -63,43 +64,50 @@ module Spotify
       sample = Sample.new player.now_playing
       process_reading(sample) if sample.state != state
     rescue StandardError => e
-      logger.error(e)
       # Swallow, because we want to keep listening
     end
 
     def process_reading(sample)
       self.state = sample.state
-      logger.info state
       on_started.call(sample.data) if sample.starting?
       on_playing.call(sample.data) if sample.playing?
       on_ending.call(sample.data) if sample.ending?
     end
 
-    def on_started
-      @on_started ||= proc {}
-      @on_started = proc { |song_data| yield(song_data) } if block_given?
-      @on_started
+    def on_started(&block)
+      @on_started ||= operation("starting", &block)
     end
 
-    def on_playing
-      @on_playing ||= proc {}
-      @on_playing = proc { |song_data| yield(song_data) } if block_given?
-      @on_playing
+    def on_playing(&block)
+      @on_ending ||= operation("playing", &block)
     end
 
-    def on_ending
-      @on_ending ||= proc {}
-      @on_ending = proc { |song_data| yield(song_data) } if block_given?
-      @on_ending
+    def on_ending(&block)
+      @on_ending ||= operation("ending", &block)
     end
 
     def player
       Ffwd::Spotify::Player
     end
 
-    def logger
-      @logger ||= Rails.logger
+    private
+
+    def operation(name, &block)
+      proc do |song_data|
+        instrument(name) do |payload|
+          payload[:name] = song_data[:name]
+          payload[:thing] = song_data
+          block.call(song_data)
+        end
+      end
     end
 
+    def instrument(operation)
+      @instrumenter ||= ActiveSupport::Notifications
+      @instrumenter.instrument(InstrumentationName) { |payload|
+        payload[:operation] = operation
+        payload[:result] = yield(payload) if block_given?
+      }
+    end
   end
 end
