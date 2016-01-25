@@ -25,24 +25,36 @@ gem 'puma'
 # [foreman](http://github.com/ddollar/foreman)
 gem "foreman", "~> 0.78.0"
 
+# Flexible authentication solution for Rails with Warden
+# [devise](http://github.com/plataformatec/devise)
+gem "devise", git: "git@github.com:plataformatec/devise.git"
+
+# A generalized Rack framework for multiple-provider authentication.
+# [omniauth](http://github.com/intridea/omniauth)
+gem "omniauth"
+
+# A simple HTTP and REST client for Ruby, inspired by the Sinatra micro...
+# [rest-client](https://github.com/rest-client/rest-client)
+gem "rest-client", "~> 1.8.0"
+
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+# gem "bcrypt", "~> 3.1.7"
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  # Call "byebug" anywhere in the code to stop execution and get a debugger console
+  gem "byebug"
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 3.0'
+  gem "web-console", "~> 3.0"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem "spring"
   gem "capistrano", "~> 3.4.0"
   gem "capistrano-rails", "~> 1.1.5"
   gem "capistrano-foreman", "~> 1.2.0"
-  gem 'capistrano-rbenv', '~> 2.0'
+  gem "capistrano-rbenv", "~> 2.0"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
