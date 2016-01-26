@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class SongTest < ActiveSupport::TestCase
-  def test_it_is_alive
-    assert_not_nil Song.new
+  it "is alive" do
+    refute_nil Song.new
   end
 end
 
