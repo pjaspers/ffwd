@@ -3,9 +3,8 @@
 require_relative '../config/environment'
 
 logger = Logger.new(STDOUT)
-# logger.info "Starting monitor"
 s = Spotify::Monitor.new
-
+s.interval = 10
 s.on_started do |song_data|
 end
 
@@ -28,6 +27,7 @@ class LogSubscriber < ::ActiveSupport::LogSubscriber
 end
 
 LogSubscriber.attach_to "spotify"
+
 # ActiveSupport::Notifications.subscribe(/spotify/) do |name, start, finish, id, payload|
 #   name    # => String, name of the event (such as 'render' from above)
 #   start   # => Time, when the instrumented block started execution
