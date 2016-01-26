@@ -1,0 +1,15 @@
+#! /bin/bash
+
+echo "==> Generating config files from config/*.example"
+for file in config/sample.*; { cp -n $file $(echo $file | sed 's/sample\.//'); }
+
+echo "==> Bundle install…"
+bundle check --path vendor 2>&1 > /dev/null || {
+  bundle install --local --path vendor --quiet --without production
+} || exit 1;
+
+echo "===> Setting up database"
+bundle exec rake db:schema:load
+bundle exec rake db:test:prepare
+
+echo "\n⏩ is all setup."

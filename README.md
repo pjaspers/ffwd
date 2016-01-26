@@ -1,24 +1,7 @@
-## README
+## FFWD
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Just your regular neighborhoud Apple-script-driven-Spotify-controller-webapp that can be used together with Nicecast to create an impromptu R-A-D-I-O (it's like Youtube but without video).
 
-Things you may want to cover:
+### Setting up
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+`bin/boostrap`

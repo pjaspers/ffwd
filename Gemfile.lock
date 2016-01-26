@@ -1,6 +1,6 @@
 GIT
-  remote: git@github.com:plataformatec/devise.git
-  revision: b97b3e6e3b570324467ac84d807111837943ec20
+  remote: https://github.com/plataformatec/devise.git
+  revision: d1d8c2f03de76b8d394c2335df336d082628de01
   specs:
     devise (4.0.0.pre.dev)
       bcrypt (~> 3.0)
@@ -56,6 +56,9 @@ GEM
       method_source
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    annotate (2.7.0)
+      activerecord (>= 3.2, < 6.0)
+      rake (~> 10.4)
     arel (7.0.0)
     bcrypt (3.1.10)
     builder (3.2.2)
@@ -229,6 +232,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate (~> 2.7.0)
   byebug
   capistrano (~> 3.4.0)
   capistrano-foreman (~> 1.2.0)

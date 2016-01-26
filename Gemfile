@@ -27,7 +27,7 @@ gem "foreman", "~> 0.78.0"
 
 # Flexible authentication solution for Rails with Warden
 # [devise](http://github.com/plataformatec/devise)
-gem "devise", git: "git@github.com:plataformatec/devise.git"
+gem "devise", git: "https://github.com/plataformatec/devise.git"
 
 # A generalized Rack framework for multiple-provider authentication.
 # [omniauth](http://github.com/intridea/omniauth)
@@ -39,6 +39,10 @@ gem "rest-client", "~> 1.8.0"
 
 # Use ActiveModel has_secure_password
 # gem "bcrypt", "~> 3.1.7"
+
+# Annotates Rails/ActiveRecord Models, routes, fixtures, and others bas...
+# [annotate](http://github.com/ctran/annotate_models)
+gem "annotate", "~> 2.7.0"
 
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
