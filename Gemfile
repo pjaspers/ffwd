@@ -27,7 +27,7 @@ gem "foreman", "~> 0.78.0"
 
 # Flexible authentication solution for Rails with Warden
 # [devise](http://github.com/plataformatec/devise)
-gem "devise", git: "git@github.com:plataformatec/devise.git"
+gem "devise", git: "https://github.com/plataformatec/devise.git"
 
 # A generalized Rack framework for multiple-provider authentication.
 # [omniauth](http://github.com/intridea/omniauth)
