@@ -3,20 +3,42 @@
 require_relative '../config/environment'
 
 logger = Logger.new(STDOUT)
-logger.info "Starting monitor"
 s = Spotify::Monitor.new
-s.logger = logger
-
+s.interval = 10
 s.on_started do |song_data|
-  puts "start: #{song_data[:name]} - #{song_data[:artist]} - #{song_data[:album]}"
 end
 
 s.on_playing do |song_data|
-  puts "playing: #{song_data[:name]} - #{song_data[:artist]} - #{song_data[:album]}"
 end
 
 s.on_ending do |song_data|
-  puts "ending: #{song_data[:name]} - #{song_data[:artist]} - #{song_data[:album]}"
 end
+
+# This will log everything to the Rails log
+class LogSubscriber < ::ActiveSupport::LogSubscriber
+  def monitor_operation(event)
+    operation = event.payload[:operation]
+    name = event.payload[:name]
+    description = "Spotify monitor (%s) => %s" % [operation, name]
+    details = "thing=%s" % event.payload[:thing].inspect
+    name = "%s (%.1fms)" % [description, event.duration]
+    debug "  #{color(name, CYAN, true)}  [ #{details} ]"
+  end
+end
+
+LogSubscriber.attach_to "spotify"
+
+# ActiveSupport::Notifications.subscribe(/spotify/) do |name, start, finish, id, payload|
+#   name    # => String, name of the event (such as 'render' from above)
+#   start   # => Time, when the instrumented block started execution
+#   finish  # => Time, when the instrumented block ended execution
+#   id      # => String, unique ID for this notification
+#   payload # => Hash, the payload
+#   puts name
+#   puts start
+#   puts finish
+#   puts id
+#   puts payload.inspect
+# end
 
 s.start_listening!
